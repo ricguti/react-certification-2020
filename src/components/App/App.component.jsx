@@ -6,6 +6,7 @@ import HomePage from '../../pages/Home';
 import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
 import SecretPage from '../../pages/Secret';
+import SearchPage from '../../pages/Search';
 import Private from '../Private';
 import Fortune from '../Fortune';
 import Layout from '../Layout';
@@ -43,6 +44,9 @@ function App() {
             </Route>
             <Private exact path="/secret">
               <SecretPage />
+            </Private>
+            <Private exact path="/search">
+              <SearchPage />
             </Private>
             <Route path="*">
               <NotFound />
