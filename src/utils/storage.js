@@ -16,15 +16,15 @@ const storage = {
   },
 
   loginApi(username, password) {
-    let authenticated = false;
+    let authenticated;
     const users = this.get(USERS) || [];
 
     const matchedUser = users.filter((user) => user.username === username)[0];
     if (matchedUser) {
-      authenticated = matchedUser.password === password;
+      authenticated = matchedUser.password === password ? username : '';
     } else {
       this.set(USERS, users.concat({ username, password }));
-      authenticated = true;
+      authenticated = username;
     }
 
     return authenticated;

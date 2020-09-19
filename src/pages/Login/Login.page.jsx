@@ -10,7 +10,10 @@ function LoginPage() {
 
   function authenticate(event) {
     event.preventDefault();
-    login();
+    login(
+      document.getElementById('username').value,
+      document.getElementById('password').value
+    );
     history.push('/secret');
   }
 
