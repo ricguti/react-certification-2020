@@ -34,26 +34,24 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <Layout>
-          <Switch>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
-            <Route exact path="/login">
-              <LoginPage />
-            </Route>
-            <Private exact path="/secret">
-              <SecretPage />
-            </Private>
-            <Private exact path="/search">
-              <SearchPage />
-            </Private>
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </Switch>
-          <Fortune />
-        </Layout>
+        <Switch>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
+          <Route exact path="/login">
+            <LoginPage />
+          </Route>
+          <Private exact path="/secret">
+            <SecretPage />
+          </Private>
+          <Private exact path="/search">
+            <SearchPage />
+          </Private>
+          <Route path="*">
+            <NotFound />
+          </Route>
+        </Switch>
+        <Fortune />
       </AuthProvider>
     </BrowserRouter>
   );
