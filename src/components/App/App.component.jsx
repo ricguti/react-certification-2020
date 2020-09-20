@@ -9,7 +9,6 @@ import SecretPage from '../../pages/Secret';
 import SearchPage from '../../pages/Search';
 import Private from '../Private';
 import Fortune from '../Fortune';
-import Layout from '../Layout';
 import { random } from '../../utils/fns';
 
 function App() {
