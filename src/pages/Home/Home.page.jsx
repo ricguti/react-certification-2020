@@ -1,36 +1,28 @@
-import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useRef, useState } from 'react';
+import NavBar from '../../components/NavBar';
+import Layout from '../../components/Layout';
 
 import { useAuth } from '../../providers/Auth';
 import './Home.styles.css';
 
 function HomePage() {
-  const history = useHistory();
   const sectionRef = useRef(null);
-  const { authenticated, logout } = useAuth();
+  const [searchValue, setSearchValue] = useState('');
 
-  function deAuthenticate(event) {
-    event.preventDefault();
-    logout();
-    history.push('/');
-  }
+  const { authenticated } = useAuth();
 
   return (
     <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
+      <NavBar searchValue={searchValue} setSearchValue={setSearchValue} />
+
       {authenticated ? (
-        <>
-          <h2>Good to have you back</h2>
-          <span>
-            <Link to="/" onClick={deAuthenticate}>
-              ← logout
-            </Link>
-            <span className="separator" />
-            <Link to="/secret">show me something cool →</Link>
-          </span>
-        </>
+        <Layout>
+          <h1>Hello {authenticated}!</h1>
+        </Layout>
       ) : (
-        <Link to="/login">let me in →</Link>
+        <Layout>
+          <h1>Hello stranger!</h1>
+        </Layout>
       )}
     </section>
   );
