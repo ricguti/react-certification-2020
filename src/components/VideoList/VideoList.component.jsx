@@ -5,7 +5,7 @@ const VideoList = ({ videos }) => {
   return videos.map(({ id, snippet }) => {
     return (
       <VideoItem
-        id={id}
+        id={id.videoId}
         image={snippet.thumbnails.medium.url}
         title={snippet.title}
         description={snippet.description}
