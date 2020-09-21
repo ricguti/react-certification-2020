@@ -30,12 +30,16 @@ const NavBar = (props) => {
   return (
     <TopNavBar>
       <PageLink>
-        <Link to="/">Home </Link>
+        <Link to="/">Home</Link>
       </PageLink>
 
-      <PageLink>
-        <Link to="/">Favourites</Link>
-      </PageLink>
+      {authenticated ? (
+        <PageLink>
+          <Link to="/">Favourites</Link>
+        </PageLink>
+      ) : (
+        <></>
+      )}
 
       <SearchBar searchValue={props.searchValue} setSearchValue={props.setSearchValue} />
 
