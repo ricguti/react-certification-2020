@@ -5,7 +5,7 @@ const Input = styled.input`
   float: right;
   display: block;
   padding: 0.5em;
-  margin: 0.5em;
+  margin: 1em;
   color: black;
   background: white;
   border: none;

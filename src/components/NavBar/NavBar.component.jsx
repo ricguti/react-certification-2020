@@ -12,7 +12,8 @@ const PageLink = styled.div`
   float: left;
   display: block;
   text-align: center;
-  padding: 14px 16px;
+  padding: 10px 16px;
+  margin-left: 16px;
   text-decoration: none;
   font-size: 17px;
 `;
