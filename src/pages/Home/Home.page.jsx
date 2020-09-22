@@ -1,27 +1,39 @@
 import React, { useRef, useState } from 'react';
 import NavBar from '../../components/NavBar';
 import Layout from '../../components/Layout';
+import VideoList from '../../components/VideoList';
 
-import { useAuth } from '../../providers/Auth';
+import youtube from '../../api/youtube';
+
 import './Home.styles.css';
 
 function HomePage() {
   const sectionRef = useRef(null);
-  const [searchValue, setSearchValue] = useState('');
 
-  const { authenticated } = useAuth();
+  const [videos, setVideos] = useState([]);
+
+  const searchVideos = (searchValue) => {
+    console.log('Searching a video');
+    youtube
+      .get('/search', {
+        params: {
+          q: searchValue,
+        },
+      })
+      .then((response) => {
+        setVideos(response.data.items);
+      });
+  };
 
   return (
     <section className="homepage" ref={sectionRef}>
-      <NavBar searchValue={searchValue} setSearchValue={setSearchValue} />
+      <NavBar searchVideos={searchVideos} />
 
-      {authenticated ? (
-        <Layout>
-          <h1>Hello {authenticated}!</h1>
-        </Layout>
+      {videos.length ? (
+        <VideoList videos={videos} />
       ) : (
         <Layout>
-          <h1>Hello stranger!</h1>
+          <h1>Search a video</h1>
         </Layout>
       )}
     </section>
