@@ -13,7 +13,6 @@ function HomePage() {
   const [videos, setVideos] = useState([]);
 
   const searchVideos = (searchValue) => {
-    console.log('Searching a video');
     youtube
       .get('/search', {
         params: {
