@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import SearchBar from '../Search';
+import Search from '../Search';
 import { useAuth } from '../../providers/Auth';
 
 const TopNavBar = styled.div`
@@ -42,8 +42,6 @@ const NavBar = (props) => {
         <></>
       )}
 
-      <SearchBar searchValue={props.searchValue} setSearchValue={props.setSearchValue} />
-
       {authenticated ? (
         <PageLink>
           <Link to="/" onClick={deAuthenticate}>
@@ -55,6 +53,8 @@ const NavBar = (props) => {
           <Link to="/login">← login</Link>
         </PageLink>
       )}
+
+      <Search searchVideos={props.searchVideos} />
     </TopNavBar>
   );
 };

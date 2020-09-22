@@ -1,28 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Input = styled.input`
   float: right;
   display: block;
-  padding: 0.5em;
   margin: 1em;
+  padding: 0.5em;
   color: black;
   background: white;
   border: none;
   border-radius: 3px;
 `;
 
-const SearchBar = (props) => {
+const Search = (props) => {
+  const [searchValue, setSearchValue] = useState('');
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    props.searchVideos(searchValue);
+  };
+
   return (
-    <div>
+    <form onSubmit={(e) => submitForm(e)}>
       <Input
         id="searchValue"
-        value={props.searchValue}
+        value={searchValue}
         placeholder="Search a video..."
-        onChange={(e) => props.setSearchValue(e.target.value)}
+        onChange={(e) => setSearchValue(e.target.value)}
       />
-    </div>
+    </form>
   );
 };
 
-export default SearchBar;
+export default Search;
