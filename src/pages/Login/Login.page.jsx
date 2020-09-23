@@ -15,7 +15,7 @@ function LoginPage() {
       document.getElementById('username').value,
       document.getElementById('password').value
     );
-    history.push('/search');
+    history.push('/');
   }
 
   return (
