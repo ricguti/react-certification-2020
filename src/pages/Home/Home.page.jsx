@@ -1,36 +1,39 @@
-import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useRef, useState } from 'react';
+import NavBar from '../../components/NavBar';
+import Layout from '../../components/Layout';
+import VideoList from '../../components/VideoList';
 
-import { useAuth } from '../../providers/Auth';
+import youtube from '../../api/youtube';
+
 import './Home.styles.css';
 
 function HomePage() {
-  const history = useHistory();
   const sectionRef = useRef(null);
-  const { authenticated, logout } = useAuth();
 
-  function deAuthenticate(event) {
-    event.preventDefault();
-    logout();
-    history.push('/');
-  }
+  const [videos, setVideos] = useState([]);
+
+  const searchVideos = (searchValue) => {
+    youtube
+      .get('/search', {
+        params: {
+          q: searchValue,
+        },
+      })
+      .then((response) => {
+        setVideos(response.data.items);
+      });
+  };
 
   return (
     <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
-      {authenticated ? (
-        <>
-          <h2>Good to have you back</h2>
-          <span>
-            <Link to="/" onClick={deAuthenticate}>
-              ← logout
-            </Link>
-            <span className="separator" />
-            <Link to="/secret">show me something cool →</Link>
-          </span>
-        </>
+      <NavBar searchVideos={searchVideos} />
+
+      {videos.length ? (
+        <VideoList videos={videos} />
       ) : (
-        <Link to="/login">let me in →</Link>
+        <Layout>
+          <h1>Search a video</h1>
+        </Layout>
       )}
     </section>
   );
