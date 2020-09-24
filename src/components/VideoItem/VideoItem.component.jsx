@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import SelectedVideoContext from '../../providers/SelectedVideo/SelectedVideoContext';
 
 const Card = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -23,8 +25,18 @@ const Container = styled.div`
 `;
 
 const VideoItem = (props) => {
+  // eslint-disable-next-line
+  const [_, setSelectedId] = useContext(SelectedVideoContext);
+  const history = useHistory();
+
+  const navigateToVideo = (event) => {
+    event.preventDefault();
+    setSelectedId(props.id);
+    history.push('/video');
+  };
+
   return (
-    <Card id={props.id}>
+    <Card id={props.id} onClick={navigateToVideo}>
       <img src={props.image} alt="a video" />
       <Container>
         <h4>
