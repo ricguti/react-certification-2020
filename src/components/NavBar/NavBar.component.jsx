@@ -34,12 +34,10 @@ const NavBar = (props) => {
         <Link to="/">Home</Link>
       </PageLink>
 
-      {authenticated ? (
+      {authenticated && (
         <PageLink>
           <Link to="/">Favourites</Link>
         </PageLink>
-      ) : (
-        <></>
       )}
 
       {authenticated ? (
