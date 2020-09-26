@@ -28,7 +28,7 @@ function HomePage() {
 
   return (
     <section className="homepage" ref={sectionRef}>
-      <NavBar searchVideos={searchVideos} />
+      <NavBar searchVideos={searchVideos} search="search" />
 
       {videos.length ? (
         <VideoList videos={videos} />

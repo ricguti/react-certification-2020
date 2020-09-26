@@ -52,7 +52,7 @@ const NavBar = (props) => {
         </PageLink>
       )}
 
-      <Search searchVideos={props.searchVideos} />
+      {props.search && <Search searchVideos={props.searchVideos} />}
     </TopNavBar>
   );
 };

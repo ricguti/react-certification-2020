@@ -4,6 +4,7 @@ import SelectedVideoContext from '../../providers/SelectedVideo/SelectedVideoCon
 import Layout from '../../components/Layout';
 import VideoInfo from '../../components/VideoInfo';
 import VideoList from '../../components/VideoList';
+import NavBar from '../../components/NavBar/NavBar.component';
 
 import youtube from '../../api/youtube';
 
@@ -41,6 +42,7 @@ const VideoDetail = () => {
 
   return (
     <div>
+      <NavBar />
       <Layout>
         <Flex>
           <Container>
