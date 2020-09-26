@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import SelectedVideoContext from '../../providers/SelectedVideo/SelectedVideoContext';
+import VideoInfo from '../VideoInfo';
 
 const Card = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -17,11 +18,6 @@ const Card = styled.div`
   & img {
     border-radius: 5px 5px 0 0;
   }
-`;
-
-const Container = styled.div`
-  padding: 2px 16px;
-  background-color: white;
 `;
 
 const VideoItem = (props) => {
@@ -42,12 +38,7 @@ const VideoItem = (props) => {
   return (
     <Card id={props.id} onClick={navigateToVideo}>
       <img src={props.image} alt="a video" />
-      <Container>
-        <h4>
-          <b>{props.title}</b>
-        </h4>
-        <p>{props.description}</p>
-      </Container>
+      <VideoInfo title={props.title} description={props.description} />
     </Card>
   );
 };
