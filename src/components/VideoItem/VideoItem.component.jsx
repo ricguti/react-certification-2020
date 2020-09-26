@@ -10,6 +10,7 @@ const Card = styled.div`
   border-radius: 5px;
   display: flex;
   margin: 10px;
+  background-color: white;
 
   &:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);

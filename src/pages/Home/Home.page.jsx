@@ -16,6 +16,8 @@ function HomePage() {
     youtube
       .get('/search', {
         params: {
+          part: 'snippet',
+          maxResults: 10,
           q: searchValue,
         },
       })
