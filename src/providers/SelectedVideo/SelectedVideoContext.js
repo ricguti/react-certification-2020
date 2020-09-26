@@ -1,5 +1,5 @@
 import { createContext } from 'react';
 
-const SelectedVideoContext = createContext(['', () => {}]);
+const SelectedVideoContext = createContext([{}, () => {}]);
 
 export default SelectedVideoContext;

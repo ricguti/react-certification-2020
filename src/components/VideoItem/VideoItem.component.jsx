@@ -9,7 +9,6 @@ const Card = styled.div`
   border-radius: 5px;
   display: flex;
   margin: 10px;
-  background-color: white;
 
   &:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
@@ -22,16 +21,21 @@ const Card = styled.div`
 
 const Container = styled.div`
   padding: 2px 16px;
+  background-color: white;
 `;
 
 const VideoItem = (props) => {
   // eslint-disable-next-line
-  const [_, setSelectedId] = useContext(SelectedVideoContext);
+  const [_, setSelectedVideo] = useContext(SelectedVideoContext);
   const history = useHistory();
 
   const navigateToVideo = (event) => {
     event.preventDefault();
-    setSelectedId(props.id);
+    setSelectedVideo({
+      id: props.id,
+      title: props.title,
+      description: props.description,
+    });
     history.push('/video');
   };
 

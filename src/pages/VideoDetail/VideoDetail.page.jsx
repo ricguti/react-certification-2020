@@ -4,7 +4,7 @@ import Layout from '../../components/Layout';
 
 const VideoDetail = () => {
   // eslint-disable-next-line
-  const [selectedId, _] = useContext(SelectedVideoContext);
+  const [selectedVideo, _] = useContext(SelectedVideoContext);
 
   return (
     <Layout>
@@ -13,10 +13,16 @@ const VideoDetail = () => {
         height="450"
         allowFullScreen
         frameBorder="0"
-        title={selectedId}
-        src={`https://www.youtube.com/embed/${selectedId}?controls=0&autoplay=1`}
+        title={selectedVideo.title}
+        src={`https://www.youtube.com/embed/${selectedVideo.id}?controls=0&autoplay=1`}
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
       />
+      <div>
+        <h4>
+          <b>{selectedVideo.title}</b>
+        </h4>
+        <p>{selectedVideo.description}</p>
+      </div>
     </Layout>
   );
 };

@@ -13,7 +13,7 @@ import Fortune from '../Fortune';
 import { random } from '../../utils/fns';
 
 function App() {
-  const selectedVideo = useState('');
+  const selectedVideo = useState({ id: '', title: '', description: '' });
 
   useLayoutEffect(() => {
     const { body } = document;
