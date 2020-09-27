@@ -37,10 +37,12 @@ const VideoItem = (props) => {
   };
 
   return (
-    <Card id={props.id} onClick={navigateToVideo}>
-      <img src={props.image} alt="a video" />
-      <VideoInfo title={props.title} description={props.description} />
-    </Card>
+    <div>
+      <Card id={props.id} onClick={navigateToVideo}>
+        <img src={props.image} alt="a video" />
+        <VideoInfo title={props.title} description={props.description} />
+      </Card>
+    </div>
   );
 };
 

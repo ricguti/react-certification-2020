@@ -8,6 +8,7 @@ import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
 import SecretPage from '../../pages/Secret';
 import VideoDetail from '../../pages/VideoDetail';
+import Favourites from '../../pages/Favourites';
 import Private from '../Private';
 import Fortune from '../Fortune';
 import { random } from '../../utils/fns';
@@ -50,6 +51,9 @@ function App() {
             </Route>
             <Route exact path="/video">
               <VideoDetail />
+            </Route>
+            <Route exact path="/favourites">
+              <Favourites />
             </Route>
             <Private exact path="/secret">
               <SecretPage />

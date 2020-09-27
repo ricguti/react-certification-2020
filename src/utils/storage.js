@@ -1,4 +1,4 @@
-import { USERS } from './constants';
+import { USERS, FAVOURITES, AUTH_STORAGE_KEY } from './constants';
 
 const storage = {
   get(key) {
@@ -28,6 +28,47 @@ const storage = {
     }
 
     return authenticated;
+  },
+
+  addFavourite(videoId) {
+    const username = this.get(AUTH_STORAGE_KEY);
+    const favourites = this.get(FAVOURITES) || [];
+
+    console.log(username);
+
+    const userIndex = favourites.map((fav) => fav.username).indexOf(username);
+    if (userIndex >= 0) {
+      favourites[userIndex].favouriteIds = favourites[userIndex].favouriteIds.concat(
+        videoId
+      );
+      this.set(FAVOURITES, favourites);
+    } else {
+      this.set(FAVOURITES, favourites.concat({ username, favouriteIds: [videoId] }));
+    }
+  },
+
+  removeFavourite(videoId) {
+    const username = this.get(AUTH_STORAGE_KEY);
+    const favourites = this.get(FAVOURITES) || [];
+
+    const userIndex = favourites.map((fav) => fav.username).indexOf(username);
+    if (userIndex >= 0) {
+      const videoIndex = favourites[userIndex].favouriteIds.indexOf(videoId);
+      if (videoIndex >= 0) {
+        favourites[userIndex].favouriteIds.splice(videoIndex, 1);
+        this.set(FAVOURITES, favourites);
+      }
+    }
+  },
+
+  getFavourites() {
+    const username = this.get(AUTH_STORAGE_KEY);
+    const favourites = this.get(FAVOURITES) || [];
+
+    const userIndex = favourites.map((fav) => fav.username).indexOf(username);
+    if (userIndex >= 0) {
+      return favourites[userIndex].favouriteIds;
+    }
   },
 };
 
