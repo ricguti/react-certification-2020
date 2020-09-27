@@ -6,6 +6,8 @@ import VideoInfo from '../../components/VideoInfo';
 import VideoList from '../../components/VideoList';
 import NavBar from '../../components/NavBar/NavBar.component';
 import { useYouTube } from '../../utils/hooks/useYouTube';
+import { useAuth } from '../../providers/Auth';
+import { storage } from '../../utils/storage';
 
 const Flex = styled.div`
   display: flex;
@@ -20,11 +22,23 @@ const Column = styled.div`
   flex: 50%;
 `;
 
+const Button = styled.button`
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 1px 25px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 25px;
+`;
+
 const VideoDetail = () => {
   // eslint-disable-next-line
   const [selectedVideo, _] = useContext(SelectedVideoContext);
   const [relatedVideos, setRelatedVideos] = useState([]);
   const { youTube } = useYouTube();
+  const { authenticated } = useAuth();
 
   useEffect(() => {
     youTube(
@@ -36,6 +50,10 @@ const VideoDetail = () => {
       setRelatedVideos
     );
   }, [selectedVideo.id, youTube]);
+
+  const addToFavorites = () => {
+    storage.addFavourite(selectedVideo.id);
+  };
 
   return (
     <div>
@@ -57,6 +75,12 @@ const VideoDetail = () => {
               title={selectedVideo.title}
               description={selectedVideo.description}
             />
+
+            {authenticated && (
+              <Button type="button" onClick={addToFavorites}>
+                Favourite
+              </Button>
+            )}
           </Container>
           <Column>
             <VideoList videos={relatedVideos} related="related" />
