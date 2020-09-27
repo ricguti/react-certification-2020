@@ -1,14 +1,18 @@
 import React from 'react';
 import VideoItem from '../VideoItem';
 
-const VideoList = ({ videos }) => {
+const VideoList = ({ videos, related }) => {
   return videos.map(({ id, snippet }) => {
     return (
       <VideoItem
         id={id.videoId}
-        image={snippet.thumbnails.medium.url}
+        image={related ? snippet.thumbnails.default.url : snippet.thumbnails.medium.url}
         title={snippet.title}
-        description={snippet.description}
+        description={
+          related
+            ? snippet.description.substring(0, 50).concat('...')
+            : snippet.description
+        }
       />
     );
   });

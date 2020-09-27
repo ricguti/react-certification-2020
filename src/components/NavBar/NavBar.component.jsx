@@ -34,12 +34,10 @@ const NavBar = (props) => {
         <Link to="/">Home</Link>
       </PageLink>
 
-      {authenticated ? (
+      {authenticated && (
         <PageLink>
           <Link to="/">Favourites</Link>
         </PageLink>
-      ) : (
-        <></>
       )}
 
       {authenticated ? (
@@ -54,7 +52,7 @@ const NavBar = (props) => {
         </PageLink>
       )}
 
-      <Search searchVideos={props.searchVideos} />
+      {props.search && <Search setVideos={props.setVideos} />}
     </TopNavBar>
   );
 };
