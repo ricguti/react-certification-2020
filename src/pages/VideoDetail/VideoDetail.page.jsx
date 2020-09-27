@@ -5,8 +5,7 @@ import Layout from '../../components/Layout';
 import VideoInfo from '../../components/VideoInfo';
 import VideoList from '../../components/VideoList';
 import NavBar from '../../components/NavBar/NavBar.component';
-
-import youtube from '../../api/youtube';
+import { useYouTube } from '../../utils/hooks/useYouTube';
 
 const Flex = styled.div`
   display: flex;
@@ -25,20 +24,18 @@ const VideoDetail = () => {
   // eslint-disable-next-line
   const [selectedVideo, _] = useContext(SelectedVideoContext);
   const [relatedVideos, setRelatedVideos] = useState([]);
+  const { youTube } = useYouTube();
 
   useEffect(() => {
-    youtube
-      .get('/search', {
-        params: {
-          part: 'snippet',
-          relatedToVideoId: selectedVideo.id,
-          type: 'video',
-        },
-      })
-      .then((response) => {
-        setRelatedVideos(response.data.items);
-      });
-  }, [selectedVideo.id]);
+    youTube(
+      {
+        part: 'snippet',
+        relatedToVideoId: selectedVideo.id,
+        type: 'video',
+      },
+      setRelatedVideos
+    );
+  }, [selectedVideo.id, youTube]);
 
   return (
     <div>
