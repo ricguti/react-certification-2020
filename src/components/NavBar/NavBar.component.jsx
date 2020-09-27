@@ -36,7 +36,7 @@ const NavBar = (props) => {
 
       {authenticated && (
         <PageLink>
-          <Link to="/">Favourites</Link>
+          <Link to="/favourites">Favourites</Link>
         </PageLink>
       )}
 
