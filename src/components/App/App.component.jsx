@@ -6,11 +6,8 @@ import SelectedVideoContext from '../../providers/SelectedVideo/SelectedVideoCon
 import HomePage from '../../pages/Home';
 import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
-import SecretPage from '../../pages/Secret';
 import VideoDetail from '../../pages/VideoDetail';
 import Favourites from '../../pages/Favourites';
-import Private from '../Private';
-import Fortune from '../Fortune';
 import { random } from '../../utils/fns';
 
 function App() {
@@ -55,15 +52,11 @@ function App() {
             <Route exact path="/favourites">
               <Favourites />
             </Route>
-            <Private exact path="/secret">
-              <SecretPage />
-            </Private>
             <Route path="*">
               <NotFound />
             </Route>
           </Switch>
         </SelectedVideoContext.Provider>
-        <Fortune />
       </AuthProvider>
     </BrowserRouter>
   );
