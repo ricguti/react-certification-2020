@@ -12,7 +12,7 @@ const VideoInfo = (props) => {
       <h4>
         <b>{props.title}</b>
       </h4>
-      <p>{props.description}</p>
+      <p data-testid="video-description">{props.description}</p>
     </Container>
   );
 };
