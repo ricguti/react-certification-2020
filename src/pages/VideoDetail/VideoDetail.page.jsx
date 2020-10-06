@@ -49,7 +49,7 @@ const VideoDetail = () => {
       },
       setRelatedVideos
     );
-  }, [selectedVideo.id]);
+  }, [selectedVideo.id, youTube]);
 
   const addToFavorites = () => {
     storage.addFavourite(selectedVideo.id);

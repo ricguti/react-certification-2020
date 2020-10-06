@@ -30,7 +30,7 @@ const Search = (props) => {
   };
 
   return (
-    <form onSubmit={(e) => submitForm(e)}>
+    <form data-testid="search-box" onSubmit={(e) => submitForm(e)}>
       <Input
         id="searchValue"
         value={searchValue}
