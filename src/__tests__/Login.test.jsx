@@ -2,15 +2,6 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Login from '../pages/Login';
 
-const mockHistoryPush = jest.fn();
-
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useHistory: () => ({
-    push: mockHistoryPush,
-  }),
-}));
-
 describe('Login tests', () => {
   it('has username and password inputs', () => {
     render(<Login />);
