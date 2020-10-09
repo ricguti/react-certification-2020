@@ -1,6 +1,6 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import SelectedVideoContext from '../../providers/SelectedVideo/SelectedVideoContext';
+import { useSelectedVideo } from '../../providers/SelectedVideo';
 import Layout from '../../components/Layout';
 import VideoInfo from '../../components/VideoInfo';
 import VideoList from '../../components/VideoList';
@@ -35,7 +35,7 @@ const Button = styled.button`
 
 const VideoDetail = () => {
   // eslint-disable-next-line
-  const [selectedVideo, _] = useContext(SelectedVideoContext);
+  const [selectedVideo, _] = useSelectedVideo();
   const [relatedVideos, setRelatedVideos] = useState([]);
   const { youTube } = useYouTube();
   const { authenticated } = useAuth();

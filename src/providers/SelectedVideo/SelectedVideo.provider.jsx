@@ -1,5 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import SelectedVideoContext from './SelectedVideoContext';
+
+const useSelectedVideo = () => {
+  const context = useContext(SelectedVideoContext);
+  if (!context) {
+    throw new Error(`Can't use "useAuth" without an AuthProvider!`);
+  }
+  return context;
+};
 
 const SelectedVideoProvider = ({ children }) => {
   const selectedVideo = useState({
@@ -15,4 +23,5 @@ const SelectedVideoProvider = ({ children }) => {
   );
 };
 
+export { useSelectedVideo };
 export default SelectedVideoProvider;

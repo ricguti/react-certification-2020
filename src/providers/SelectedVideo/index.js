@@ -1,1 +1,1 @@
-export { default } from './SelectedVideo.provider';
+export { default, useSelectedVideo } from './SelectedVideo.provider';

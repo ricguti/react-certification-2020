@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import SelectedVideoContext from '../../providers/SelectedVideo/SelectedVideoContext';
+import { useSelectedVideo } from '../../providers/SelectedVideo';
 import VideoInfo from '../VideoInfo';
 
 const Card = styled.div`
@@ -23,7 +23,7 @@ const Card = styled.div`
 
 const VideoItem = (props) => {
   // eslint-disable-next-line
-  const [_, setSelectedVideo] = useContext(SelectedVideoContext);
+  const [_, setSelectedVideo] = useSelectedVideo();
   const history = useHistory();
 
   const navigateToVideo = (event) => {
