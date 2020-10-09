@@ -4,7 +4,7 @@ import SelectedVideoContext from './SelectedVideoContext';
 const useSelectedVideo = () => {
   const context = useContext(SelectedVideoContext);
   if (!context) {
-    throw new Error(`Can't use "useAuth" without an AuthProvider!`);
+    throw new Error(`Can't use "useSelectedVideo" without a SelectedVideoProvider!`);
   }
   return context;
 };
