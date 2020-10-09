@@ -1,8 +1,8 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import AuthProvider from '../../providers/Auth';
-import SelectedVideoContext from '../../providers/SelectedVideo/SelectedVideoContext';
+import SelectedVideoProvider from '../../providers/SelectedVideo';
 import HomePage from '../../pages/Home';
 import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
@@ -11,12 +11,6 @@ import Favourites from '../../pages/Favourites';
 import { random } from '../../utils/fns';
 
 function App() {
-  const selectedVideo = useState({
-    id: 'dQw4w9WgXcQ',
-    title: 'rick roll',
-    description: 'rick roll',
-  });
-
   useLayoutEffect(() => {
     const { body } = document;
 
@@ -38,7 +32,7 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <SelectedVideoContext.Provider value={selectedVideo}>
+        <SelectedVideoProvider>
           <Switch>
             <Route exact path="/">
               <HomePage />
@@ -56,7 +50,7 @@ function App() {
               <NotFound />
             </Route>
           </Switch>
-        </SelectedVideoContext.Provider>
+        </SelectedVideoProvider>
       </AuthProvider>
     </BrowserRouter>
   );
