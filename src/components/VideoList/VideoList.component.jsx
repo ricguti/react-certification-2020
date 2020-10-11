@@ -9,11 +9,8 @@ const VideoList = ({ videos, related }) => {
         id={id.videoId}
         image={related ? snippet.thumbnails.default.url : snippet.thumbnails.medium.url}
         title={snippet.title}
-        description={
-          related
-            ? snippet.description.substring(0, 50).concat('...')
-            : snippet.description
-        }
+        description={snippet.description}
+        related={related}
       />
     );
   });

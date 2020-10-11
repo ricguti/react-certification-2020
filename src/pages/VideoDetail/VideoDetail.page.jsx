@@ -72,6 +72,7 @@ const VideoDetail = () => {
             <VideoInfo
               title={selectedVideo.title}
               description={selectedVideo.description}
+              related="related"
             />
 
             {authenticated && (
