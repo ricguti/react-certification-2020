@@ -6,7 +6,7 @@ import VideoInfo from '../../components/VideoInfo';
 import VideoList from '../../components/VideoList';
 import NavBar from '../../components/NavBar/NavBar.component';
 import YouTubePlayer from '../../components/YouTubePlayer';
-import { useYouTube } from '../../utils/hooks/useYouTube';
+import youTube from '../../api/youtube';
 import { useAuth } from '../../providers/Auth';
 import { storage } from '../../utils/storage';
 
@@ -38,18 +38,14 @@ const VideoDetail = () => {
   // eslint-disable-next-line
   const [selectedVideo, _] = useSelectedVideo();
   const [relatedVideos, setRelatedVideos] = useState([]);
-  const { youTube } = useYouTube();
   const { authenticated } = useAuth();
 
   useEffect(() => {
-    youTube(
-      {
-        part: 'snippet',
-        relatedToVideoId: selectedVideo.id,
-        type: 'video',
-      },
-      setRelatedVideos
-    );
+    youTube({
+      part: 'snippet',
+      relatedToVideoId: selectedVideo.id,
+      type: 'video',
+    }).then(setRelatedVideos);
   }, [selectedVideo, youTube]);
 
   const addToFavorites = () => {
