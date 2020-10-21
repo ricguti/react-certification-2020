@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import youTube from '../../api/youtube';
 
 const Input = styled.input`
   float: right;
@@ -18,11 +17,7 @@ const Search = (props) => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    youTube({
-      part: 'snippet',
-      maxResults: 10,
-      q: searchValue,
-    }).then(props.setVideos);
+    props.onSearchChange(searchValue);
   };
 
   return (
