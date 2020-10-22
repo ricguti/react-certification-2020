@@ -40,7 +40,11 @@ const VideoItem = (props) => {
     <div data-testid="video-item">
       <Card id={props.id} onClick={navigateToVideo}>
         <img src={props.image} alt={props.title} />
-        <VideoInfo title={props.title} description={props.description} />
+        <VideoInfo
+          title={props.title}
+          description={props.description}
+          related={props.related}
+        />
       </Card>
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router';
 import styled from 'styled-components';
 import NavBar from '../../components/NavBar';
+import YouTubePlayer from '../../components/YouTubePlayer';
 import { useAuth } from '../../providers/Auth';
 import { storage } from '../../utils/storage';
 
@@ -49,16 +50,7 @@ const Favourites = () => {
                 <Button type="button" onClick={removeFromFavorites}>
                   Remove Favourite
                 </Button>
-                <iframe
-                  width="400"
-                  height="225"
-                  allowFullScreen
-                  frameBorder="0"
-                  key={favId}
-                  title={favId}
-                  src={`https://www.youtube.com/embed/${favId}?controls=0&autoplay=0`}
-                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                />
+                <YouTubePlayer id={favId} title={favId} width="400" height="225" />
               </FavElement>
             );
           })}

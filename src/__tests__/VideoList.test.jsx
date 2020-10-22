@@ -121,22 +121,4 @@ describe('video list', () => {
       'https://i.ytimg.com/vi/W7h-Yho8EB0/mqdefault.jpg'
     );
   });
-
-  it('displays short video descriptions when showing related videos', () => {
-    render(<VideoList videos={videos} related="related" />);
-
-    const descriptions = screen.getAllByTestId('video-description');
-
-    descriptions.map((description) => {
-      expect(description.innerHTML.length).toBeLessThanOrEqual(53);
-    });
-  });
-
-  it('displays complete video descriptions', () => {
-    render(<VideoList videos={videos} />);
-
-    const descriptions = screen.getAllByTestId('video-description');
-
-    expect(descriptions[1].innerHTML.length).toBeGreaterThan(53);
-  });
 });

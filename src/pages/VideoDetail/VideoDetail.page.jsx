@@ -5,7 +5,8 @@ import Layout from '../../components/Layout';
 import VideoInfo from '../../components/VideoInfo';
 import VideoList from '../../components/VideoList';
 import NavBar from '../../components/NavBar/NavBar.component';
-import { useYouTube } from '../../utils/hooks/useYouTube';
+import YouTubePlayer from '../../components/YouTubePlayer';
+import youTube from '../../api/youtube';
 import { useAuth } from '../../providers/Auth';
 import { storage } from '../../utils/storage';
 
@@ -37,18 +38,14 @@ const VideoDetail = () => {
   // eslint-disable-next-line
   const [selectedVideo, _] = useSelectedVideo();
   const [relatedVideos, setRelatedVideos] = useState([]);
-  const { youTube } = useYouTube();
   const { authenticated } = useAuth();
 
   useEffect(() => {
-    youTube(
-      {
-        part: 'snippet',
-        relatedToVideoId: selectedVideo.id,
-        type: 'video',
-      },
-      setRelatedVideos
-    );
+    youTube({
+      part: 'snippet',
+      relatedToVideoId: selectedVideo.id,
+      type: 'video',
+    }).then(setRelatedVideos);
   }, [selectedVideo, youTube]);
 
   const addToFavorites = () => {
@@ -61,19 +58,17 @@ const VideoDetail = () => {
       <Layout>
         <Flex>
           <Container>
-            <iframe
+            <YouTubePlayer
+              id={selectedVideo.id}
+              title={selectedVideo.title}
               width="800"
               height="450"
-              allowFullScreen
-              frameBorder="0"
-              title={selectedVideo.title}
-              src={`https://www.youtube.com/embed/${selectedVideo.id}?controls=0&autoplay=1`}
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              autoplay="autoplay"
             />
-
             <VideoInfo
               title={selectedVideo.title}
               description={selectedVideo.description}
+              related="related"
             />
 
             {authenticated && (
